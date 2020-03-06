@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.zqw.mapper.IUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.learn.zqw.domain.User">
+        <id     column="id"       property="id"/>
+        <result column="username"     property="username"/>
+        <result column="password"     property="password"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, username, password
+    </sql>
+
+    <!--此处配置dao接口所要实现的SQL语句-->
+
+    <!--插入一条记录-->
+    <insert id="insert" parameterType="com.learn.zqw.domain.User">
+        insert into user (username, password) values (#{username}, #{password})
+    </insert>
+
+    <!--插入记录并返回ID-->
+    <insert id="insertAndGetId" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.learn.zqw.domain.User">
+        insert into user(username, password)
+        values(#{username}, #{password})
+    </insert>
+
+    <!--插入记录并返回ID第二种方式-->
+    <insert id="insertAndGetId2" parameterType="com.learn.zqw.domain.User" >
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into user(username, password)
+        values(#{username}, #{password})
+    </insert>
+
+    <!--条件插入-->
+    <insert id="insertSelective" parameterType="com.learn.zqw.domain.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">username,</if>
+            <if test="password != null and password != ''">username,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">#{username},</if>
+            <if test="password != null and password != ''">#{username},</if>
+        </trim>
+    </insert>
+
+    <!--条件修改-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.learn.zqw.domain.User">
+        update user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--修改-->
+    <update id="updateByPrimaryKey" parameterType="com.learn.zqw.domain.User">
+        update user set username = #{username}, password = #{password} where id = #{id}
+    </update>
+
+    <!--查询所有-->
+    <select id="findAll" resultType="com.learn.zqw.domain.User">
+        select * from user
+    </select>
+
+    <!--按照ID查询-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user where id = #{id}
+    </select>
+
+    <!--按照ID删除-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user  where id = #{id}
+    </delete>
+</mapper>
