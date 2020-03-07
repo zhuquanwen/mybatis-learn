@@ -22,6 +22,9 @@
     </environments>
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件-->
     <mappers>
+
         <mapper resource="com/learn/zqw/IUserMapper.xml" />
+        <mapper resource="com/learn/zqw/generator/mapper/StudentMapper.xml" />
+
     </mappers>
 </configuration>
