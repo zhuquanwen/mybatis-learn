@@ -26,5 +26,9 @@
         <mapper resource="com/learn/zqw/IUserMapper.xml" />
         <mapper resource="com/learn/zqw/generator/mapper/StudentMapper.xml" />
 
+        <!--可以直接把每个xml作配置，也可以使用包扫描，使用包扫描，如果使用纯注解方式，也可以把对应的.xml文件删除-->
+        <!--<mapper resource="com/learn/zqw/sqlannotation/mapper/BookMapper.xml" />-->
+        <!-- <mapper resource="com/learn/zqw/sqlannotation/mapper/LibraryMapper.xml" />-->
+        <package name="com.learn.zqw.sqlannotation.mapper"/>
     </mappers>
 </configuration>
