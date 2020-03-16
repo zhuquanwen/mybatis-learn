@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--mybatis的主配置文件-->
 <configuration>
+
+    <!--自定义typeHandler-->
+    <typeHandlers>
+        <typeHandler handler="com.learn.zqw.handler.SexEnumTypeHandler"
+                     javaType="com.learn.zqw.generator.domain.SexEnum"
+                     jdbcType="SMALLINT"/>
+    </typeHandlers>
+
     <!--配置环境-->
     <environments default="mysql">
         <!--配置mysql环境-->
@@ -20,11 +28,14 @@
             </dataSource>
         </environment>
     </environments>
+
+
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件-->
     <mappers>
 
         <mapper resource="com/learn/zqw/IUserMapper.xml" />
         <mapper resource="com/learn/zqw/generator/mapper/StudentMapper.xml" />
+        <mapper resource="com/learn/zqw/generator/mapper/BirdMapper.xml" />
 
         <!--可以直接把每个xml作配置，也可以使用包扫描，使用包扫描，如果使用纯注解方式，也可以把对应的.xml文件删除-->
         <!--<mapper resource="com/learn/zqw/sqlannotation/mapper/BookMapper.xml" />-->

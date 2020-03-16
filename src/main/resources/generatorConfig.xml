@@ -49,7 +49,8 @@
         </javaClientGenerator>
 
         <!-- 数据表 根据数据库中的表来生成  -->
-        <table tableName="student"/>
+        <!--<table tableName="student"/>-->
+        <table tableName="bird"/>
 
         <!-- 数据表更详细的属性参见官方文档，也可参照https://www.jianshu.com/p/e09d2370b796，里注释掉-->
         <!-- <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
