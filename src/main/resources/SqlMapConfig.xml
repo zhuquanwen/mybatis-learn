@@ -12,6 +12,12 @@
                      jdbcType="SMALLINT"/>
     </typeHandlers>
 
+    <plugins>
+        <plugin interceptor="com.learn.zqw.plugin.TestPlugin">
+            <property name="testKey" value="testVal"/>
+        </plugin>
+    </plugins>
+
     <!--配置环境-->
     <environments default="mysql">
         <!--配置mysql环境-->
@@ -42,4 +48,6 @@
         <!-- <mapper resource="com/learn/zqw/sqlannotation/mapper/LibraryMapper.xml" />-->
         <package name="com.learn.zqw.sqlannotation.mapper"/>
     </mappers>
+    
+
 </configuration>
