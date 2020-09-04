@@ -4,7 +4,6 @@ import com.learn.zqw.generator.domain.Student;
 import com.learn.zqw.generator.domain.StudentExample;
 import com.learn.zqw.generator.mapper.StudentMapper;
 import lombok.Cleanup;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
