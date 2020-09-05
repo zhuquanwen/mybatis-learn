@@ -29,4 +29,5 @@ public interface CityMapper {
     int updateByPrimaryKey(City record);
 
     City selectWithProvinceById(Integer id);
+    City selectWithProvinceById2(Integer id);
 }

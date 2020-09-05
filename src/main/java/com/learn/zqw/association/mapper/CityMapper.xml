@@ -10,8 +10,16 @@
   <resultMap id="ResultMapWithProvince" type="com.learn.zqw.association.domain.City">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="pid" jdbcType="INTEGER" property="pid" />
     <association property="province" column="pid" select="com.learn.zqw.association.mapper.ProvinceMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+  <resultMap id="ResultMapWithProvince2" type="com.learn.zqw.association.domain.City">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <association property="province" javaType="com.learn.zqw.association.domain.Province">
+      <id column="id" javaType="INTEGER" property="id"/>
+      <result column="name" jdbcType="VARCHAR" property="name" />
+    </association>
   </resultMap>
 
   <sql id="Example_Where_Clause">
@@ -75,6 +83,10 @@
   <sql id="Base_Column_List">
     id, name, pid
   </sql>
+
+  <select id="selectWithProvinceById2" parameterType="java.lang.Integer" resultMap="ResultMapWithProvince2">
+    select c.id,c.name,c.pid,p.id, p.name from city c, province p where c.pid = p.id and c.id = #{id, jdbcType=INTEGER}
+  </select>
 
   <select id="selectWithProvinceById" parameterType="java.lang.Integer" resultMap="ResultMapWithProvince">
     select id,name,pid from city where id = #{id, jdbcType=INTEGER}
