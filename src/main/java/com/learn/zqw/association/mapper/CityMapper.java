@@ -30,4 +30,5 @@ public interface CityMapper {
 
     City selectWithProvinceById(Integer id);
     City selectWithProvinceById2(Integer id);
+    List<City> selectByPid(Integer pid);
 }

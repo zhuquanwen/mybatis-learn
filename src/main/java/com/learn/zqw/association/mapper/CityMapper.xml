@@ -89,7 +89,11 @@
   </select>
 
   <select id="selectWithProvinceById" parameterType="java.lang.Integer" resultMap="ResultMapWithProvince">
-    select id,name,pid from city where id = #{id, jdbcType=INTEGER}
+  select id,name,pid from city where id = #{id, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id,name,pid from city where pid = #{pid, jdbcType=INTEGER}
   </select>
 
   <select id="selectByExample" parameterType="com.learn.zqw.association.domain.CityExample" resultMap="BaseResultMap">

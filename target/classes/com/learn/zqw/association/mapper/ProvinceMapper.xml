@@ -5,6 +5,24 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+
+  <resultMap id="withCitysResultMap0" type="com.learn.zqw.association.domain.MyProvince">
+    <id column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <collection property="cityList" column="province_id" javaType="ArrayList" ofType="com.learn.zqw.association.domain.City" select="com.learn.zqw.association.mapper.CityMapper.selectByPid">
+    </collection>
+  </resultMap>
+
+  <resultMap id="withCitysResultMap" type="com.learn.zqw.association.domain.MyProvince">
+    <id column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <collection property="cityList" ofType="com.learn.zqw.association.domain.City">
+      <id property="id" jdbcType="INTEGER" column="id"/>
+      <result property="name" jdbcType="VARCHAR" column="name"/>
+      <result property="pid" jdbcType="INTEGER" column="pid"/>
+    </collection>
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -66,6 +84,20 @@
   <sql id="Base_Column_List">
     id, name
   </sql>
+
+  <select id="selectWithCitysById0" parameterType="java.lang.Integer" resultMap="withCitysResultMap0">
+    select p.id as province_id, p.name as province_name
+    from province p
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectWithCitysById" parameterType="java.lang.Integer" resultMap="withCitysResultMap">
+    select p.id as province_id, p.name as province_name, c.id, c.name, c.pid from province p left join city c on p.id = c.pid
+    where p.id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+
   <select id="selectByExample" parameterType="com.learn.zqw.association.domain.ProvinceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

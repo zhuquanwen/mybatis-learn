@@ -1,5 +1,6 @@
 package com.learn.zqw.association.mapper;
 
+import com.learn.zqw.association.domain.MyProvince;
 import com.learn.zqw.association.domain.Province;
 import com.learn.zqw.association.domain.ProvinceExample;
 import java.util.List;
@@ -27,4 +28,8 @@ public interface ProvinceMapper {
     int updateByPrimaryKeySelective(Province record);
 
     int updateByPrimaryKey(Province record);
+
+    MyProvince selectWithCitysById(Integer id);
+
+    MyProvince selectWithCitysById0(Integer id);
 }
