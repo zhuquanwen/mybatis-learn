@@ -1,8 +1,10 @@
 package com.learn.zqw.association.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class City {
     private Integer id;
 
@@ -12,4 +14,13 @@ public class City {
 
     private Province province;
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pid=" + pid +
+                ", province=" + province +
+                '}';
+    }
 }

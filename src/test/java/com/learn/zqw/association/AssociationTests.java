@@ -16,6 +16,7 @@ import org.junit.runners.JUnit4;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * //TODO
@@ -81,6 +82,22 @@ public class AssociationTests {
         SqlSession session = sessionFactory.openSession();
         ProvinceMapper mapper = session.getMapper(ProvinceMapper.class);
         MyProvince province = mapper.selectWithCitysById0(1);
+        System.out.println(province);
+    }
+
+    /**
+     * 延迟加载
+     * */
+    @Test
+    public void test5() throws IOException {
+        @Cleanup InputStream is = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sessionFactory = sqlSessionFactoryBuilder.build(is);
+        SqlSession session = sessionFactory.openSession();
+        ProvinceMapper mapper = session.getMapper(ProvinceMapper.class);
+        MyProvince province = mapper.selectWithCitysById0(1);
+        System.out.println(province);
+        List<City> cityList = province.getCityList();
         System.out.println(province);
     }
 }

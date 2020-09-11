@@ -9,8 +9,7 @@
   <resultMap id="withCitysResultMap0" type="com.learn.zqw.association.domain.MyProvince">
     <id column="province_id" jdbcType="INTEGER" property="provinceId" />
     <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
-    <collection property="cityList" column="province_id" javaType="ArrayList" ofType="com.learn.zqw.association.domain.City" select="com.learn.zqw.association.mapper.CityMapper.selectByPid">
-    </collection>
+    <collection property="cityList" column="province_id"  select="com.learn.zqw.association.mapper.CityMapper.selectByPid" fetchType="lazy"/>
   </resultMap>
 
   <resultMap id="withCitysResultMap" type="com.learn.zqw.association.domain.MyProvince">
